@@ -1,4 +1,5 @@
 import psycopg
+from psycopg.rows import dict_row
 
 from app.database.config import (
     DB_NAME,
@@ -16,4 +17,5 @@ def get_connection():
         password=DB_PASSWORD,
         host=DB_HOST,
         port=DB_PORT,
+        row_factory=dict_row,
     )
