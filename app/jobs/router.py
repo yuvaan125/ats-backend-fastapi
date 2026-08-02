@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
-from app.jobs.schemas import JobCreate
+from app.jobs.repository import get_all_jobs
+from app.jobs.schemas import JobCreate, JobResponse
 
 router = APIRouter(
     prefix="/jobs",
@@ -8,9 +9,9 @@ router = APIRouter(
 )
 
 
-@router.get("/")
+@router.get("/", response_model=list[JobResponse])
 def get_jobs():
-    return {"message": "Get all jobs - Not implemented"}
+    return get_all_jobs()
 
 
 @router.post("/")
